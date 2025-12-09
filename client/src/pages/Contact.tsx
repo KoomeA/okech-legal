@@ -7,6 +7,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
+import { ChatWidget } from "@/components/ChatWidget";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -185,6 +186,9 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* Live Chat Widget */}
+      <ChatWidget />
 
       {/* Map Placeholder */}
       <section className="h-[400px] bg-muted w-full relative">
