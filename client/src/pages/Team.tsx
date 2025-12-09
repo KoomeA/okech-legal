@@ -16,36 +16,6 @@ export default function Team() {
       bio: "Okech Kennedy is the Founding Partner of the firm. With over 15 years of experience in high-stakes commercial litigation and corporate structuring, he has successfully represented leading financial institutions and multinational corporations. He holds a Master of Laws (LL.M) in International Trade & Investment Law from the University of Nairobi.",
       email: "okech@okechadvocates.com",
       linkedin: "#"
-    },
-    {
-      name: "Julius M. Kimulu",
-      role: "Partner",
-      image: "/images/legal_services.jpg", // Placeholder
-      credentials: "LL.B (Moi University), Dip. Law (KSL), CPA (K)",
-      specialization: ["Tax Law", "Banking & Finance", "Employment Law"],
-      bio: "Julius leads the firm's Tax and Banking departments. As a Certified Public Accountant (CPA-K) and Advocate, he offers a unique dual perspective on financial and legal matters. He regularly advises on complex tax disputes, debt restructuring, and regulatory compliance for fintech companies.",
-      email: "kimulu@okechadvocates.com",
-      linkedin: "#"
-    },
-    {
-      name: "Sarah N. Wanjiku",
-      role: "Senior Associate",
-      image: "/images/hero_image.jpg", // Placeholder
-      credentials: "LL.B (Strathmore), Dip. Law (KSL)",
-      specialization: ["Intellectual Property", "Data Protection", "TMT"],
-      bio: "Sarah specializes in Technology, Media, and Telecommunications (TMT) law. She has guided numerous startups through their seed funding rounds and IP registration processes. She is also a certified Data Protection Officer.",
-      email: "sarah@okechadvocates.com",
-      linkedin: "#"
-    },
-    {
-      name: "David O. Ochieng",
-      role: "Associate",
-      image: "/images/justice_scales.jpg", // Placeholder
-      credentials: "LL.B (Kenyatta University), Dip. Law (KSL)",
-      specialization: ["Civil Litigation", "Family Law", "ADR"],
-      bio: "David is a tenacious litigator with a passion for family law and alternative dispute resolution. He manages the firm's probate portfolio and represents clients in sensitive matrimonial proceedings with empathy and discretion.",
-      email: "david@okechadvocates.com",
-      linkedin: "#"
     }
   ];
 
