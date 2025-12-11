@@ -6,18 +6,7 @@ import { Linkedin, Mail, Phone } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Team() {
-  const team = [
-    {
-      name: "Okech Kennedy",
-      role: "Founding Partner",
-      image: "/images/team_collaboration.jpg", // Placeholder
-      credentials: "LL.M (UoN), LL.B (UoN), Dip. Law (KSL), CPS (K)",
-      specialization: ["Corporate Law", "Commercial Litigation", "Real Estate"],
-      bio: "Okech Kennedy is the Founding Partner of the firm. With over 15 years of experience in high-stakes commercial litigation and corporate structuring, he has successfully represented leading financial institutions and multinational corporations. He holds a Master of Laws (LL.M) in International Trade & Investment Law from the University of Nairobi.",
-      email: "okech@okechadvocates.com",
-      linkedin: "#"
-    }
-  ];
+  const { hero, philosophy, founder, hrPhilosophy } = teamContent;
 
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-secondary selection:text-secondary-foreground pt-20">
@@ -45,131 +34,145 @@ export default function Team() {
         </div>
       </nav>
 
-      {/* Header */}
-      <section className="bg-primary text-primary-foreground py-16">
-        <div className="container">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Our Team</h1>
-          <p className="text-xl text-primary-foreground/80 max-w-2xl font-serif">
-            Meet the legal minds dedicated to your success. Our team combines deep industry knowledge with a commitment to excellence.
+      {/* Hero Section */}
+      <section className="bg-primary text-primary-foreground py-20 md:py-28">
+        <div className="container max-w-4xl text-center">
+          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">{hero.title}</h1>
+          <p className="text-xl md:text-2xl font-serif text-secondary mb-8">{hero.subtitle}</p>
+          <p className="text-lg text-primary-foreground/80 leading-relaxed max-w-2xl mx-auto">
+            {hero.description}
           </p>
         </div>
       </section>
 
-      {/* Team Grid */}
-      <section className="py-16">
+      {/* Philosophy Section */}
+      <section className="py-20 bg-muted/30">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <Dialog key={index}>
-                <DialogTrigger asChild>
-                  <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden bg-white">
-                    <div className="aspect-[3/4] overflow-hidden relative">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-                      <div className="absolute bottom-0 left-0 p-6 text-white">
-                        <h3 className="font-serif font-bold text-xl mb-1">{member.name}</h3>
-                        <p className="text-sm font-medium text-accent uppercase tracking-wider">{member.role}</p>
-                      </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
-                        {member.bio}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {member.specialization.slice(0, 2).map((spec, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs font-normal bg-primary/5 text-primary hover:bg-primary/10">
-                            {spec}
-                          </Badge>
-                        ))}
-                        {member.specialization.length > 2 && (
-                          <Badge variant="secondary" className="text-xs font-normal bg-primary/5 text-primary hover:bg-primary/10">
-                            +{member.specialization.length - 2}
-                          </Badge>
-                        )}
-                      </div>
-                      <Button variant="outline" className="w-full border-primary/20 hover:bg-primary hover:text-white transition-colors">
-                        View Profile
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </DialogTrigger>
-                
-                <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white">
-                  <div className="grid md:grid-cols-[2fr_3fr]">
-                    <div className="relative h-64 md:h-full">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-primary/10" />
-                    </div>
-                    <div className="p-8 md:p-10 space-y-6 overflow-y-auto max-h-[80vh]">
-                      <DialogHeader>
-                        <DialogTitle className="text-3xl font-serif font-bold text-primary mb-2">{member.name}</DialogTitle>
-                        <DialogDescription className="text-lg font-medium text-secondary uppercase tracking-wider">
-                          {member.role}
-                        </DialogDescription>
-                      </DialogHeader>
-                      
-                      <div className="space-y-4">
-                        <div>
-                          <h4 className="font-bold text-primary text-sm uppercase tracking-wide mb-2">Credentials</h4>
-                          <p className="text-muted-foreground text-sm">{member.credentials}</p>
-                        </div>
-                        
-                        <div>
-                          <h4 className="font-bold text-primary text-sm uppercase tracking-wide mb-2">Biography</h4>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {member.bio}
-                          </p>
-                        </div>
-
-                        <div>
-                          <h4 className="font-bold text-primary text-sm uppercase tracking-wide mb-2">Areas of Specialization</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {member.specialization.map((spec, i) => (
-                              <Badge key={i} className="bg-primary text-white hover:bg-primary/90">
-                                {spec}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="pt-6 border-t border-border flex gap-4">
-                          <Button variant="outline" className="gap-2" asChild>
-                            <a href={`mailto:${member.email}`}>
-                              <Mail className="w-4 h-4" /> Email
-                            </a>
-                          </Button>
-                          <Button variant="outline" className="gap-2" asChild>
-                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                              <Linkedin className="w-4 h-4" /> LinkedIn
-                            </a>
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">{philosophy.title}</h2>
+            <Separator className="w-24 h-1 bg-secondary mx-auto" />
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {philosophy.content.map((item, index) => (
+              <Card key={index} className="border-none shadow-md hover:shadow-lg transition-shadow bg-white">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-serif font-bold text-primary mb-4">{item.heading}</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.text}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Join Us CTA */}
-      <section className="py-16 bg-muted/30">
-        <div className="container text-center max-w-3xl">
-          <h2 className="text-3xl font-serif font-bold text-primary mb-4">Join Our Team</h2>
-          <p className="text-muted-foreground mb-8">
-            We are always looking for exceptional legal talent to join our growing practice. If you share our commitment to excellence and integrity, we'd love to hear from you.
-          </p>
-          <Button className="bg-secondary hover:bg-secondary/90 text-white">View Careers</Button>
+      {/* Founder Profile Section */}
+      <section className="py-20">
+        <div className="container">
+          <div className="grid lg:grid-cols-[400px_1fr] gap-12 items-start">
+            {/* Founder Image & Quick Info */}
+            <div className="space-y-6">
+              <div className="aspect-[3/4] overflow-hidden rounded-lg shadow-xl relative group">
+                <img 
+                  src={founder.image} 
+                  alt={founder.name} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="text-white">
+                    <p className="font-serif text-lg italic">"Redefining Legal Partnership in a Complex World"</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Card className="bg-primary text-primary-foreground border-none">
+                <CardContent className="p-6 space-y-4">
+                  <h3 className="font-serif font-bold text-xl mb-2">Contact</h3>
+                  <div className="space-y-3">
+                    <a href={`mailto:${founder.contact.email}`} className="flex items-center gap-3 hover:text-secondary transition-colors">
+                      <Mail className="w-5 h-5" />
+                      <span className="text-sm">{founder.contact.email}</span>
+                    </a>
+                    <a href={founder.contact.linkedin} className="flex items-center gap-3 hover:text-secondary transition-colors">
+                      <Linkedin className="w-5 h-5" />
+                      <span className="text-sm">LinkedIn Profile</span>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Founder Bio & Details */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-2">{founder.name}</h2>
+                <p className="text-xl text-secondary font-medium uppercase tracking-wider mb-6">{founder.role}</p>
+                <Separator className="w-full max-w-md bg-border mb-8" />
+              </div>
+
+              <div className="prose prose-lg text-muted-foreground max-w-none">
+                {founder.bio.map((paragraph, index) => (
+                  <p key={index} className="mb-4 leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 pt-8">
+                <div>
+                  <h3 className="font-serif font-bold text-xl text-primary mb-4">Credentials & Education</h3>
+                  <ul className="space-y-3">
+                    {founder.credentials.map((cred, index) => (
+                      <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <CheckCircle2 className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+                        <span>{cred}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-serif font-bold text-xl text-primary mb-4">Core Competencies</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {founder.competencies.map((comp, index) => (
+                      <Badge key={index} className="bg-primary/10 text-primary hover:bg-primary/20 px-3 py-1 text-sm font-normal">
+                        {comp}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HR Philosophy / Join Us */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">{hrPhilosophy.title}</h2>
+              <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">
+                {hrPhilosophy.description}
+              </p>
+              <Button className="bg-secondary hover:bg-secondary/90 text-white font-serif h-12 px-8 text-lg">
+                View Career Opportunities
+              </Button>
+            </div>
+            <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm border border-white/10">
+              <h3 className="font-serif font-bold text-xl mb-6 text-secondary">Our Culture & Values</h3>
+              <ul className="space-y-4">
+                {hrPhilosophy.values.map((value, index) => (
+                  <li key={index} className="flex items-center gap-4">
+                    <div className="w-2 h-2 rounded-full bg-secondary" />
+                    <span className="text-lg">{value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </div>
