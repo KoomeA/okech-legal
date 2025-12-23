@@ -1,42 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, BookOpen, Building2, Download, Gavel, Globe, Scale, Shield, Users } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
+import { ArrowRight, BookOpen, Building2, Gavel, Globe, Scale, Shield, Users } from "lucide-react";
 import { Link } from "wouter";
+import { ProfileDownloadDialog } from "@/components/ProfileDownloadDialog";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleDownload = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    
-    setIsSubmitting(true);
-    
-    // Simulate API call to save email
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsDialogOpen(false);
-      toast.success("Thank you! The profile is downloading.");
-      
-      // Trigger download
-      const link = document.createElement('a');
-      link.href = "/Okech_K_and_Co_Advocates_Profile.pdf";
-      link.download = "Okech_K_and_Co_Advocates_Profile.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      setEmail("");
-    }, 1000);
-  };
 
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-secondary selection:text-secondary-foreground">
@@ -90,40 +59,12 @@ export default function Home() {
             <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/5 h-14 px-8 text-lg font-serif" asChild>
               <Link href="/team">Meet the Team</Link>
             </Button>
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-              <DialogTrigger asChild>
-                <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/5 h-14 px-8 text-lg font-serif gap-2">
-                  <Download className="w-5 h-5" /> Download Profile
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="font-serif text-2xl text-primary">Download Firm Profile</DialogTitle>
-                  <DialogDescription>
-                    Please enter your email address to receive the full firm profile document.
-                  </DialogDescription>
-                </DialogHeader>
-                <form onSubmit={handleDownload} className="space-y-4 py-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="name@company.com" 
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required 
-                    />
-                  </div>
-                  <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90 text-white" disabled={isSubmitting}>
-                    {isSubmitting ? "Processing..." : "Download PDF"}
-                  </Button>
-                  <p className="text-xs text-muted-foreground text-center">
-                    We respect your privacy. Your email will only be used to send you relevant legal updates.
-                  </p>
-                </form>
-              </DialogContent>
-            </Dialog>
+            <ProfileDownloadDialog
+              triggerLabel="Download Profile"
+              triggerVariant="outline"
+              profileFileName="Okech_K_and_Co_Advocates_Profile.pdf"
+              profilePath="/Okech_K_and_Co_Advocates_Profile.pdf"
+            />
           </div>
         </div>
       </section>

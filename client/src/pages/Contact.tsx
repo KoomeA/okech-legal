@@ -8,6 +8,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
 import { ChatWidget } from "@/components/ChatWidget";
+import { ProfileDownloadDialog } from "@/components/ProfileDownloadDialog";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -190,6 +191,26 @@ export default function Contact() {
 
       {/* Live Chat Widget */}
       <ChatWidget />
+
+      {/* Download Profile Section */}
+      <section className="py-20 bg-gradient-to-b from-secondary/5 to-transparent">
+        <div className="container">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-4xl font-serif font-bold text-primary mb-4">Get Our Firm Profile</h2>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Download our comprehensive firm profile to learn more about our expertise, team, and approach to legal representation. Simply provide your details below.
+            </p>
+            <div className="flex justify-center">
+              <ProfileDownloadDialog
+                triggerLabel="Download Profile"
+                triggerVariant="default"
+                profileFileName="Okech_K_and_Co_Advocates_Profile.pdf"
+                profilePath="/Okech_K_and_Co_Advocates_Profile.pdf"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Map Placeholder */}
       <section className="h-[400px] bg-muted w-full relative">
